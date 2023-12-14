@@ -1,5 +1,33 @@
 English | [中文](README_CN.md)
 
+# 批量
+
+```python
+import os
+from pdf2docx import Converter
+from glob import glob
+
+# 设置包含 PDF 文件的文件夹路径
+folder_path = r'C:\Users\username\Desktop\folder'
+
+# 使用 glob 模块找到所有的 PDF 文件
+pdf_files = glob(os.path.join(folder_path, '*.pdf'))
+
+# 遍历所有找到的 PDF 文件
+for pdf_file in pdf_files:
+    # 从 PDF 文件路径创建 DOCX 文件路径（替换扩展名）
+    docx_file = pdf_file.replace('.pdf', '.docx')
+
+    # 创建一个 Converter 对象并进行转换
+    cv = Converter(pdf_file)
+    cv.convert(docx_file)      # 转换所有页面
+    cv.close()
+
+    print(f'Converted: {pdf_file} to {docx_file}')
+
+```
+
+
 # pdf2docx 
 
 ![python-version](https://img.shields.io/badge/python->=3.6-green.svg)
